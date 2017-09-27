@@ -2,7 +2,8 @@ from bs4 import BeautifulSoup
 from django.conf import settings
 from google_analytics.utils import build_ga_params, set_cookie
 from google_analytics.tasks import send_ga_tracking
-
+import logging
+logger = logging.getLogger(__name__)
 
 class GoogleAnalyticsMiddleware(object):
     def process_response(self, request, response):
@@ -29,5 +30,8 @@ class GoogleAnalyticsMiddleware(object):
         params = build_ga_params(
             request, account, path=path, referer=referer, title=title)
         response = set_cookie(params, response)
-        send_ga_tracking.delay(params)
+        try:
+            send_ga_tracking.delay(params)
+        except Exception as e:
+            logger.warning("cannot send google analytic tracking post: {}".format(e))
         return response
