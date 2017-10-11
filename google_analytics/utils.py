@@ -44,8 +44,8 @@ def set_cookie(params, response):
     # use visitor_id as cookie value unless it is based on the IP only.
     # then generate a new value (if cookie is sent next time, we have a 
     # better visitor id!
-    visitor_id = params.visitor_id
-    client_ip = params.client_ip
+    visitor_id = params.get('visitor_id')
+    client_ip = params.get('client_ip')
     if visitor_id == hashlib.md5(client_ip.encode('utf-8')).hexdigest():
         visitor_id = str(uuid.uuid4())
 
