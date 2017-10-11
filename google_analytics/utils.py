@@ -27,7 +27,7 @@ def get_visitor_id(cookie, client_ip, request):
     """
     if cookie:
         return cookie
-    if request.user.is_is_authenticated:
+    if request.user.is_authenticated:
         # create the visitor id from the username
         cid = hashlib.md5(request.user.username.encode('utf-8')).hexdigest()
     elif client_ip:
