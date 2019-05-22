@@ -1,5 +1,57 @@
 Changelog
 =========
+4.3.9
+----------
+# Reset security settings
+4.3.8
+----------
+# Add non-interactive (ni) parameter for GA tracking
+4.3.7
+----------
+#. Ensure that the correct Campaign parameters are being sent to GA
+
+4.3.6
+----------
+#.Ensure correct user IP is pulled from proxy header if it exists
+4.3.5
+----------
+#.Remove self referal traffic
+4.3.4
+----------
+#.Remove dr from URL logging
+
+4.3.3
+----------
+#.Add user agent for GA logging
+
+4.3.2
+----------
+#.Add leading text for GA logging
+
+4.3.1
+----------
+#. Enable GA logging setting
+
+4.3.0
+----------
+#. Add custom parameters to build_ga_params
+
+4.2.0
+----------
+#. Add uid to GA params
+
+4.1.0
+----------
+#. Add support for Python 3
+
+4.0.0
+-----
+#. Supports Django 1.11
+
+3.0.0
+-----
+#. Now only supports Django 1.10
+
 2.1.6
 -----
 #. Fix encoding for title

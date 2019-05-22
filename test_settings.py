@@ -15,10 +15,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'google_analytics',
     'djcelery',
-    'kombu.transport.django',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
 ]
 
@@ -30,6 +29,15 @@ GOOGLE_ANALYTICS = {
 ROOT_URLCONF = 'google_analytics.urls'
 
 CUSTOM_UIP_HEADER = 'HTTP_X_IORG_FBS_UIP'
+
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'OPTIONS': {
+        'context_processors': [
+            'django.contrib.auth.context_processors.auth',
+        ],
+    },
+}]
 
 TEST_RUNNER = 'djcelery.contrib.test_runner.CeleryTestSuiteRunner'
 

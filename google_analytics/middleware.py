@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup
 from django.conf import settings
+from django.utils.deprecation import MiddlewareMixin
 from google_analytics.utils import build_ga_params, set_cookie
 from google_analytics.tasks import send_ga_tracking
 import logging
 logger = logging.getLogger(__name__)
 
-class GoogleAnalyticsMiddleware(object):
+class GoogleAnalyticsMiddleware(MiddlewareMixin):
     def process_response(self, request, response):
         if hasattr(settings, 'GOOGLE_ANALYTICS_IGNORE_PATH'):
             exclude = [p for p in settings.GOOGLE_ANALYTICS_IGNORE_PATH
@@ -16,13 +17,13 @@ class GoogleAnalyticsMiddleware(object):
         # get the account id
         try:
             account = settings.GOOGLE_ANALYTICS['google_analytics_id']
-        except:
+        except (KeyError, TypeError):
             raise Exception("No Google Analytics ID configured")
 
         try:
             title = BeautifulSoup(
                 response.content, "html.parser").html.head.title.text
-        except:
+        except AttributeError:
             title = None
 
         path = request.path

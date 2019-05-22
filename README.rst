@@ -8,7 +8,7 @@ Django Google Analytics
 Installation
 ------------
 
-#. Install or add ``django-google-analytics`` to your Python path.
+#. Install ``django-google-analytics-app`` from PyPI or add to your Python path some other way.
 #. Add ``google_analytics`` to you ``INSTALLED_APPS`` setting.
 #. Add URL include to your project's ``urls.py`` file::
 
@@ -44,9 +44,9 @@ Using ``<img/>`` and sticking it in your ``base.html``::
 
 Using Django's middleware, you can process every request and use Celery to make the request to Google Analytics::
 
-    MIDDLEWARE_CLASSES = (
+    MIDDLEWARE = [
         'google_analytics.middleware.GoogleAnalyticsMiddleware',
-    )
+    ]
 
 You have to add ``google_analytics`` to your ``CELERY_IMPORTS``::
 
@@ -55,4 +55,3 @@ You have to add ``google_analytics`` to your ``CELERY_IMPORTS``::
 You can also specify paths that will be excluded when tracking::
 
     GOOGLE_ANALYTICS_IGNORE_PATH = ['/health/', ]
-
