@@ -82,7 +82,9 @@ def build_ga_params(
         client_ip = meta.get('REMOTE_ADDR', '')
 
     # try and get visitor cookie from the request
-    user_agent = meta.get('HTTP_USER_AGENT', 'Unknown')
+    user_agent = meta.get('HTTP_USER_AGENT')
+    if not user_agent:
+        user_agent = meta.get('USER_AGENT','Unknown')
     cookie = request.COOKIES.get(COOKIE_NAME)
     visitor_id = get_visitor_id(cookie, client_ip, request)
 
