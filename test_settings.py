@@ -14,7 +14,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'google_analytics',
-    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +38,7 @@ TEMPLATES = [{
     },
 }]
 
-TEST_RUNNER = 'djcelery.contrib.test_runner.CeleryTestSuiteRunner'
+#TEST_RUNNER = 'djcelery.contrib.test_runner.CeleryTestSuiteRunner'
 
-CELERY_ALWAYS_EAGER = True
+CELERY_TASK_ALWAYS_EAGER = True
+task_always_eager = True
